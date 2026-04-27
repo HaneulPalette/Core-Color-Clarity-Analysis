@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Core Color Clarity</title>
 
-<!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
@@ -26,14 +25,6 @@ body {
 .logo {
   width: 90px;
   border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-iframe {
-  width: 100%;
-  height: 600px;
-  border: none;
-  margin-top: 20px;
 }
 
 button {
@@ -53,7 +44,6 @@ button {
   padding: 15px;
   text-align: left;
   white-space: pre-line;
-  border-radius: 8px;
 }
 </style>
 </head>
@@ -62,25 +52,22 @@ button {
 
 <div class="container">
 
-<!-- LOGO -->
-<img src="logo.png" class="logo" alt="Haneul Palette Logo">
+<img src="logo.png" class="logo">
 
 <h1>🌿 Core Color Clarity</h1>
 <p>A refined understanding of your natural color direction.</p>
 
-<!-- ✅ CORRECT GOOGLE FORM EMBED -->
-<iframe 
-src="https://docs.google.com/forms/d/e/1FAIpQLSfFyg7vk1AhuXd78C8/viewform?embedded=true">
-Loading…
-</iframe>
+<!-- ✅ WORKING FORM BUTTON -->
+<a href="https://forms.gle/b7Vxy7FSMGhRPRKZ8" target="_blank">
+  <button>Start Analysis (Fill Form)</button>
+</a>
 
-<!-- PREVIEW BUTTON -->
+<br><br>
+
 <button onclick="showPreview()">View Preview Report</button>
 
-<!-- PREVIEW BOX -->
 <div class="result" id="previewBox"></div>
 
-<!-- DOWNLOAD BUTTON -->
 <button id="downloadBtn" style="display:none;" onclick="downloadPDF()">
 Download Full Report (PDF)
 </button>
@@ -91,7 +78,7 @@ Download Full Report (PDF)
 
 let reportData = "";
 
-function showPreview() {
+function showPreview(){
 
   reportData = `
 HANEUL PALETTE
@@ -122,7 +109,7 @@ Warm earthy tones enhance your natural harmony and balance.
   document.getElementById("downloadBtn").style.display = "inline-block";
 }
 
-function downloadPDF() {
+function downloadPDF(){
 
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -130,23 +117,19 @@ function downloadPDF() {
   const img = new Image();
   img.src = "logo.png";
 
-  img.onload = function () {
+  img.onload = function(){
 
-    // LOGO IN PDF
     doc.addImage(img, "PNG", 85, 10, 40, 40);
 
-    // TITLE
     doc.setFontSize(14);
     doc.text("Core Color Clarity Report", 50, 60);
 
-    // CONTENT
     doc.setFontSize(11);
     const lines = doc.splitTextToSize(reportData, 180);
     doc.text(lines, 10, 75);
 
-    // SAVE PDF
     doc.save("Core_Color_Clarity_Report.pdf");
-  };
+  }
 }
 
 </script>
